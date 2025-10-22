@@ -22,8 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const MAX_RECORDING_DURATION = 30;
     
     // Chat history storage keys
-    const CHAT_HISTORY_KEY = 'hkuLibraryChatHistory';
-    const SESSION_ID_KEY = 'hkuLibraryChatSessionId';
+    const CHAT_HISTORY_KEY = 'hkuSgaChatHistory';
+    const SESSION_ID_KEY = 'hkuSgaChatSessionId';
     
     // Apply voice input configuration
     updateVoiceButtonState();
@@ -270,7 +270,7 @@ document.addEventListener('DOMContentLoaded', () => {
             chatMessages.removeChild(chatMessages.lastChild);
         }
         
-        addMessage('Session restarted. How can I help you today?', 'bot-message', true);
+        addMessage('Session restarted. How can I assist you with SGA EA Platform today?', 'bot-message', true);
         localStorage.removeItem(CHAT_HISTORY_KEY);
     }
     
