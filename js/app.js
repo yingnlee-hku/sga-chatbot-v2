@@ -13,6 +13,31 @@ document.addEventListener('DOMContentLoaded', () => {
     const voiceButton = document.getElementById('voiceButton');
     const recordingStatus = document.getElementById('recordingStatus');
     
+    // Lightbox elements for image enlarge
+    const lightboxOverlay = document.createElement('div');
+    lightboxOverlay.className = 'lightbox-overlay';
+    const lightboxImage = document.createElement('img');
+    lightboxImage.className = 'lightbox-image';
+    lightboxOverlay.appendChild(lightboxImage);
+    document.body.appendChild(lightboxOverlay);
+    
+    function openLightbox(src) {
+        lightboxImage.src = src;
+        lightboxOverlay.classList.add('active');
+    }
+    
+    function closeLightbox() {
+        lightboxOverlay.classList.remove('active');
+        lightboxImage.src = '';
+    }
+    
+    lightboxOverlay.addEventListener('click', closeLightbox);
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && lightboxOverlay.classList.contains('active')) {
+            closeLightbox();
+        }
+    });
+    
     // Variables for voice recording
     let isRecording = false;
     let mediaRecorder = null;
@@ -81,6 +106,14 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     restartButton.addEventListener('click', restartSession);
+    
+    // Delegate image click to open lightbox
+    chatMessages.addEventListener('click', (e) => {
+        const target = e.target;
+        if (target && target.tagName === 'IMG' && target.closest('.message-content')) {
+            openLightbox(target.src);
+        }
+    });
     
     // Voice button event listeners
     let buttonHoldTimeout;

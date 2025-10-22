@@ -223,6 +223,7 @@ body {
     display: block;
     margin: 8px 0;
     border-radius: 6px;
+    cursor: zoom-in;
 }
 
 .bot-message .message-content figure {
@@ -233,6 +234,30 @@ body {
     font-size: 0.9rem;
     color: #666;
     margin-top: 4px;
+}
+
+/* Lightbox overlay */
+.lightbox-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 20px;
+}
+
+.lightbox-overlay.active {
+    display: flex;
+}
+
+.lightbox-image {
+    max-width: 90vw;
+    max-height: 90vh;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    cursor: zoom-out;
 }
 
 /* Feedback Buttons */
