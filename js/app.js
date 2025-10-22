@@ -357,7 +357,9 @@ document.addEventListener('DOMContentLoaded', () => {
             
             // Configure DOMPurify to allow target and rel attributes
             const sanitizedHtml = DOMPurify.sanitize(rawHtml, {
-                ADD_ATTR: ['target', 'rel']
+                ADD_ATTR: ['target', 'rel'],
+                ADD_TAGS: ['img', 'figure', 'figcaption'],
+                ADD_DATA_URI_TAGS: ['img']
             });
             
             messageContent.innerHTML = sanitizedHtml;
