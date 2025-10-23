@@ -403,6 +403,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 link.setAttribute('rel', 'noopener noreferrer');
             });
             
+            // Enhance images: lazy-load and add error fallback UI
+            messageContent.querySelectorAll('img').forEach((img) => {
+                img.setAttribute('loading', 'lazy');
+                img.addEventListener('error', () => {
+                    const url = img.getAttribute('src') || '';
+                    const fallback = document.createElement('div');
+                    fallback.style.background = '#fff3cd';
+                    fallback.style.border = '1px solid #ffeeba';
+                    fallback.style.color = '#856404';
+                    fallback.style.padding = '8px 10px';
+                    fallback.style.borderRadius = '6px';
+                    fallback.style.margin = '8px 0';
+                    fallback.innerHTML = `Image failed to load. <a href="${url}" target="_blank" rel="noopener noreferrer">Open image in new tab</a>`;
+                    img.replaceWith(fallback);
+                });
+            });
+            
             messageContent.querySelectorAll('pre code').forEach((block) => {
                 hljs.highlightElement(block);
             });
